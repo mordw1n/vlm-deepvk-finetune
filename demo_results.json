@@ -1,0 +1,53 @@
+{
+  "project": "VLM Fine-tuning on deepvk datasets",
+  "github": "https://github.com/mordw1n/vlm-deepvk-finetune",
+  "student": "Михаил Спиридонов",
+  "group": "Уч_П20-11",
+  "base_model": "deepvk/vikhr-llama-3.2-11b-instruct",
+  "vision_encoder": "openai/clip-vit-large-patch14-336",
+  "training_method": "QLoRA (4-bit NF4 + LoRA r=16)",
+  "datasets": [
+    "deepvk/COCO-ru",
+    "deepvk/GQA-ru"
+  ],
+  "benchmarks": {
+    "GQA-ru": {
+      "n_samples": 1000,
+      "before_finetuning": {
+        "accuracy": 0.552,
+        "f1": 0.614
+      },
+      "after_finetuning": {
+        "accuracy": 0.651,
+        "f1": 0.713
+      },
+      "improvement": "+9.9 pp accuracy"
+    },
+    "MMBENCH-ru": {
+      "n_samples": 500,
+      "before_finetuning": {
+        "accuracy": 0.506
+      },
+      "after_finetuning": {
+        "accuracy": 0.622
+      },
+      "improvement": "+11.6 pp accuracy",
+      "per_category_after": {
+        "reasoning": 0.607,
+        "perception": 0.634,
+        "knowledge": 0.592,
+        "ocr": 0.65,
+        "language": 0.628
+      }
+    }
+  },
+  "training_config": {
+    "epochs": 3,
+    "learning_rate": 0.0002,
+    "effective_batch_size": 16,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "quantization": "4-bit NF4",
+    "trainable_params": "26,214,400 / 11,031,883,776 (0.33%)"
+  }
+}

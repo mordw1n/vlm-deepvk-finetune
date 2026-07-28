@@ -1,0 +1,54 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Виртуальные окружения
+env/
+venv/
+.venv/
+.env
+
+# Обученные модели (слишком большие для git)
+checkpoints/
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.gguf
+
+# Данные
+data/
+datasets/
+*.csv
+*.json.gz
+*.tar.gz
+*.zip
+
+# Логи
+logs/
+*.log
+wandb/
+runs/
+mlruns/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Результаты которые НЕ нужно исключать
+!evaluation_results.json
+!demo_results.json
